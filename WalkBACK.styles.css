@@ -1,0 +1,195 @@
+/* /Layout/MainLayout.razor.rz.scp.css */
+.page[b-osgxdconr6] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-osgxdconr6] {
+    flex: 1;
+}
+
+.sidebar[b-osgxdconr6] {
+    width: 180px;
+    padding: 6px;
+    background-image: url('/site/windowsxp.jpg');
+    background-size: cover;
+}
+.year-search[b-osgxdconr6]
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.search-input[b-osgxdconr6]
+{
+    width: 200px;
+    padding: 4px 8px;
+    border: 1px solid #0000;
+}
+.top-row[b-osgxdconr6] {
+    background-color: #f7f7f792;
+    border-bottom: 1px solid #d6d5d583;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-osgxdconr6]  a, .top-row[b-osgxdconr6]  .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+    }
+
+    .top-row[b-osgxdconr6]  a:hover, .top-row[b-osgxdconr6]  .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row[b-osgxdconr6]  a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row[b-osgxdconr6] {
+        justify-content: space-between;
+    }
+
+    .top-row[b-osgxdconr6]  a, .top-row[b-osgxdconr6]  .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-osgxdconr6] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-osgxdconr6] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-osgxdconr6] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth[b-osgxdconr6]  a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+
+    .top-row[b-osgxdconr6], article[b-osgxdconr6] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* /Layout/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-hvkugv26po] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-hvkugv26po] {
+    min-height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-hvkugv26po] {
+    font-size: 1.1rem;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: rgb(255, 0, 0);
+    font-family: 'Times-New-Roman';
+    font-size: 17px;
+    font-style: italic;
+    animation: rainbowColor-b-hvkugv26po 20s linear infinite;
+}
+
+    @keyframes rainbowColor-b-hvkugv26po {
+        0% { color: red;}
+        16% {color: orange;}
+        33% {color: yellow;}
+        50% {color: green;}
+        66% {color: cyan;}
+        83% {color: blue;}
+        100% {color: red}
+    }
+
+.bi[b-hvkugv26po] {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.nav-item[b-hvkugv26po] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-hvkugv26po] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-hvkugv26po] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-hvkugv26po]  a {
+        color: #d7d7d7;
+        border-radius: 0px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        font-family: 'Times-New-Roman';
+        font-style: italic;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 17px;
+    font-style: italic;
+    }
+
+.nav-item[b-hvkugv26po]  a.active {
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
+
+.nav-item[b-hvkugv26po]  a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+.nav-link[b-hvkugv26po] {
+    display: block;
+    padding: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #666;
+    background: #EEEEEE;
+    color: #000;
+    text-decoration: none;
+    font-style: italic;
+}
+@media (min-width: 641px) {
+    .navbar-toggler[b-hvkugv26po] {
+        display: none;
+    }
+
+    .collapse[b-hvkugv26po] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+
+    .nav-scrollable[b-hvkugv26po] {
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
