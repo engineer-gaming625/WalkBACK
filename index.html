@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WalkBACK</title>
-    <base href="/" />
+    <base href="/WalkBACK/" />
     <link href="_framework/dotnet.qpqbo8zl8u.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-AvwQMJp+e/G9IF4L3jEBuPo8dUi+mLAhNXn2SMrpchk=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
@@ -47,6 +47,39 @@
         <span class="dismiss">🗙</span>
     </div>
     <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script> <!--Подключение к firebase-->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script> <!--Подключение логина и пароля-->
+  <script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyD1TU1Ktez4CfeGHi64YBti3DgekXlbKmQ",
+    authDomain: "walkback-ff11e.firebaseapp.com",
+    projectId: "walkback-ff11e",
+    storageBucket: "walkback-ff11e.firebasestorage.app",
+    messagingSenderId: "935820735200",
+    appId: "1:935820735200:web:10eb828d1a3255d469d685",
+    measurementId: "G-7PEQ848DLB"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig); //Подключиться к firebase(проекту)
+  // const app = initializeApp(firebaseConfig);
+  // const analytics = getAnalytics(app);
+</script>
+<script>
+  function Register(email, password)
+  {
+
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
+  function Login(email, password)
+  {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+  function Logout()
+  {
+    return firebase.auth().signOut();
+  }
+</script>
 </body>
 
 </html>
