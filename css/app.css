@@ -1,5 +1,5 @@
 html, body {
-    background-image: url("/site/windowsxp-blurred.jpg");
+    background-image: url("site/windowsxp-blurred.jpg");
     background-size: cover;
     font-family: 'Verdana', 'Helvetica', 'Arial', 'Times-New-Roman';
     font-size: 12px;
