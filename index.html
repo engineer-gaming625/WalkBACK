@@ -64,20 +64,37 @@
   firebase.initializeApp(firebaseConfig); //Подключиться к firebase(проекту)
   // const app = initializeApp(firebaseConfig);
   // const analytics = getAnalytics(app);
-</script>
-<script>
-  function Register(email, password)
+  async function register(email, password)
   {
-
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    try
+    {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      return "OK";
+    }
+    catch(e)
+    {
+      return e.message;
+    }
   }
-  function Login(email, password)
+  async function login(email, password)
   {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    try
+    {
+      return firebase.auth().signInWithEmailAndPassword(email, password);
+      return "OK";
+    }
+    catch(e)
+    {
+      return e.message;
+    }
   }
-  function Logout()
+  function logout()
   {
     return firebase.auth().signOut();
+  }
+  function getUser()
+  {
+    return firebase.auth().currentUser.email
   }
 </script>
 </body>
