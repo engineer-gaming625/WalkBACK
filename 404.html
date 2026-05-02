@@ -49,7 +49,6 @@
     <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script> <!--Подключение к firebase-->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script> <!--Подключение логина и пароля-->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script> <!--Подключение логина и пароля-->
   <script>
   const firebaseConfig = {
     apiKey: "AIzaSyD1TU1Ktez4CfeGHi64YBti3DgekXlbKmQ",
@@ -96,46 +95,6 @@
   function getUser()
   {
     return firebase.auth().currentUser.email
-  }
-  async function saveProfile(name, avatar, desc)
-  {
-    try
-    {
-      const user = firebase.auth().currentUser
-      await user.updateProfile(      {
-        displayName: name,
-        photoURL: avatar
-      });
-      await firebase.firestore()
-      .collection("users")
-      .doc(user.uid)
-      .set({
-        desc: desc
-      },
-      {
-        marge: true
-      });
-      return "OK";
-    }
-    catch(e)
-    {
-      return e.message;
-    }
-  }
-  async function getFullProfile()
-  {
-    const user = firebase.auth().currentUser
-    if (!user) return null;
-    const doc = await firebase.firestore()
-    .collection("users")
-    .doc(users.uid)
-    .get();
-    return {
-      name: user.displayName,
-      avatar: user.photoURL,
-      email: user.email,
-      desc: doc.exists ? doc.data().desc: ""
-    };
   }
 </script>
 </body>
