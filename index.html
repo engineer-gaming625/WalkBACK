@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WalkBACK</title>
     <base href="/WalkBACK/" />
-    <link href="_framework/dotnet.4frilr32lc.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-UIzly7yN86Jz2SxTgShf+9q9nyUZGqQVAvTej/GuI4U=" />
+    <link href="_framework/dotnet.dy3w9x7fyk.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-BdnNrDEfQ7JY5RE16ULpIJgtg2quqpGRkRXDwJT5Ewg=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -14,7 +14,7 @@
     <script type="importmap">{
   "imports": {
     "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.4frilr32lc.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.dy3w9x7fyk.js",
     "./_framework/dotnet.native.js": "./_framework/dotnet.native.87vtjjdetb.js",
     "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.2tx45g8lli.js"
   },
@@ -22,8 +22,8 @@
   "integrity": {
     "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
     "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
-    "./_framework/dotnet.4frilr32lc.js": "sha256-UIzly7yN86Jz2SxTgShf+9q9nyUZGqQVAvTej/GuI4U=",
-    "./_framework/dotnet.js": "sha256-UIzly7yN86Jz2SxTgShf+9q9nyUZGqQVAvTej/GuI4U=",
+    "./_framework/dotnet.dy3w9x7fyk.js": "sha256-BdnNrDEfQ7JY5RE16ULpIJgtg2quqpGRkRXDwJT5Ewg=",
+    "./_framework/dotnet.js": "sha256-BdnNrDEfQ7JY5RE16ULpIJgtg2quqpGRkRXDwJT5Ewg=",
     "./_framework/dotnet.native.87vtjjdetb.js": "sha256-zE11fbcG2CeLl1Zi+NJgMOfWpdjuUWNte+icrtAO58I=",
     "./_framework/dotnet.native.js": "sha256-zE11fbcG2CeLl1Zi+NJgMOfWpdjuUWNte+icrtAO58I=",
     "./_framework/dotnet.runtime.2tx45g8lli.js": "sha256-2lZh9yO0fnzm3Xt7yV+Kox3DH3nK7L8hDhm84VT1xco=",
@@ -49,7 +49,7 @@
     <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script> <!--Подключение к firebase-->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script> <!--Подключение логина и пароля-->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script> <!--Подключение логина и пароля-->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script> Подключение логина и пароля -->
   <script>
   const firebaseConfig = {
     apiKey: "AIzaSyD1TU1Ktez4CfeGHi64YBti3DgekXlbKmQ",
@@ -95,48 +95,65 @@
   }
   function getUser()
   {
-    return firebase.auth().currentUser.email
+    return firebase.auth().currentUser?.email || "";
   }
-  async function saveProfile(name, avatar, desc)
+  function getProfile()
   {
-    try
-    {
-      const user = firebase.auth().currentUser
-      await user.updateProfile(      {
-        displayName: name,
-        photoURL: avatar
-      });
-      await firebase.firestore()
-      .collection("users")
-      .doc(user.uid)
-      .set({
-        desc: desc
-      },
-      {
-        marge: true
-      });
-      return "OK";
-    }
-    catch(e)
-    {
-      return e.message;
-    }
+    const data = localStorage.getItem("profile");
+    return data? JSON.parse(data):null;
   }
-  async function getFullProfile()
+  function saveProfile(name, avatar, desc)
   {
-    const user = firebase.auth().currentUser
-    if (!user) return null;
-    const doc = await firebase.firestore()
-    .collection("users")
-    .doc(users.uid)
-    .get();
-    return {
-      name: user.displayName,
-      avatar: user.photoURL,
-      email: user.email,
-      desc: doc.exists ? doc.data().desc: ""
+    const email = firebase.auth().currentUser?.email || "";
+    const profile = {
+      name:name,
+      avatar:avatar,
+      desc:desc,
+      email:email
     };
+    localStorage.setItem("profile", JSON.stringify(profile));
+    return "Ok";
   }
+  // async function saveProfile(name, avatar, desc)
+  // {
+  //   try
+  //   {
+  //     const user = firebase.auth().currentUser
+  //     await user.updateProfile(      {
+  //       displayName: name,
+  //       photoURL: avatar
+  //     });
+  //     await firebase.firestore()
+  //     .collection("users")
+  //     .doc(user.uid)
+  //     .set({
+  //       desc: desc
+  //     },
+  //     {
+  //       marge: true
+  //     });
+  //     return "OK";
+  //   }
+  //   catch(e)
+  //   {
+  //     return e.message;
+  //   }
+  // }
+  // async function getFullProfile()
+  // {
+  //   const user = firebase.auth().currentUser
+  //   if (!user) return null;
+  //   const doc = await firebase.firestore()
+  //   .collection("users")
+  //   .doc(users.uid)
+  //   .get();
+  //   return {
+  //     name: user.displayName,
+  //     avatar: user.photoURL,
+  //     email: user.email,
+  //     desc: doc.exists ? doc.data().desc: ""
+  //   };
+  // }
 </script>
 </body>
 
